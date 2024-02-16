@@ -1,0 +1,1217 @@
+<HomePage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+    orientation: "vertical"
+    padding: '10dp'  # Adjust padding
+    spacing: "10dp"  # Adjust spacing
+
+    ScrollView:
+        BoxLayout:
+            size_hint_y: None
+            height: self.minimum_height
+            orientation: "vertical"
+            padding: '10dp'  # Adjust padding
+            spacing: "10dp"  # Adjust spacing
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "300dp", "40dp"
+                pos_hint: {"center_x": 0.5}
+                Label: 
+                    text: "Welcome, " + root.firstname_loaded
+                    font_size: '25sp'
+
+            BoxLayout:
+                size_hint: .9, None
+                size: "300dp", "40dp"
+                pos_hint: {"center_x": 0.5}
+                Label:
+                    text: "Your Target Zone is: "
+                    size_hint: (.7, None)
+                    size: "300dp", "40dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    canvas.before:
+                        Color:
+                            rgba: app.Label_Background_Color
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    text: root.current_zone
+                    size_hint: (.7, None)
+                    size: "300dp", "40dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    canvas.before:
+                        Color:
+                            rgba: app.input_color
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+            BoxLayout:
+                size_hint: .9, None
+                size: "300dp", "40dp"
+                pos_hint: {"center_x": 0.5}
+                Label:
+                    text: "Zone on BPM is: "
+                    size_hint: (.7, None)
+                    size: "300dp", "40dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    canvas.before:
+                        Color:
+                            rgba: app.Label_Background_Color
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    text:  root.min_target_zone + " to " + root.max_target_zone
+                    size_hint: (.7, None)
+                    size: "300dp", "40dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    canvas.before:
+                        Color:
+                            rgba: app.input_color
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+            BoxLayout:
+                size_hint: .9, None
+                size: "300dp", "40dp"
+                pos_hint: {"center_x": 0.5}
+                Label:
+                    text: "The Target Velocity is: "
+                    size_hint: (.7, None)
+                    size: "300dp", "40dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    canvas.before:
+                        Color:
+                            rgba: app.Label_Background_Color
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Label:
+                    text: root.target_velocity + " Km/h"
+                    size_hint: (.7, None)
+                    size: "300dp", "40dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    canvas.before:
+                        Color:
+                            rgba: app.input_color
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            
+            BoxLayout:
+                size_hint: 0.7, None
+                size: "300dp", "280dp"
+                pos_hint: {"center_x": 0.5}
+                spacing: "10dp"
+                orientation: "vertical"
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "140dp", "90dp"
+                    pos_hint: {"center_x": 0.5}
+                    Button:
+                        text: root.start_stop_training
+                        background_color: root.start_stop_training_color
+                        background_normal: ''
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: root.start_training()
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "60dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "The Next Update, After: " + root.new_update + " min"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "300dp", "280dp"
+                pos_hint: {"center_x": 0.5}
+                spacing: "10dp"
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "140dp", "140dp"
+                    pos_hint: {"center_x": 0.5}
+                    Button:
+                        text: 'My Velocity'
+                        background_color: app.btn_color
+                        background_normal: ''
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: root.go_to_velocity_page_button()
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "140dp", "140dp"
+                    pos_hint: {"center_x": 0.5}
+                    Button:
+                        text: 'My Heart Rate'
+                        background_color: app.btn_color
+                        background_normal: ''
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: root.go_to_heart_rate_page_button()
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "300dp", "200dp"
+                pos_hint: {"center_x": 0.5}
+                spacing: "10dp"
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "140dp", "140dp"
+                    pos_hint: {"center_x": 0.5}
+                    Button:
+                        text: 'Change My Zone'
+                        background_color: app.btn_color
+                        background_normal: ''
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: root.go_to_zones_page_button()
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "140dp", "140dp"
+                    pos_hint: {"center_x": 0.5}
+                    Button:
+                        text: 'My Profile'
+                        background_color: app.btn_color
+                        background_normal: ''
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: root.go_to_profile_page_button()
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "300dp", "60dp"
+                pos_hint: {"center_x": 0.5}
+                Button:
+                    text: 'Log Out'
+                    background_color: app.btn_color
+                    background_normal: ''
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    on_press: root.log_out_button()
+
+
+
+
+<ZonesPage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+            
+    ScrollView:
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 20
+            size_hint_y: None
+            height: self.minimum_height
+            padding: '20dp'
+            
+            BoxLayout:
+                pos_hint: {"center_x": 0.5}
+                size_hint: 1, None
+                size: "300dp", "40dp"
+                Label:
+                    text: "TARGET ZONE"
+                    size_hint: (1,1)
+                    
+            BoxLayout:
+                size_hint: .9, None
+                size: "300dp", "40dp"
+                pos_hint: {"center_x": 0.5}
+                Button:
+                    text: 'Go Back'
+                    background_color: app.btn_color
+                    background_normal: ''
+                    size_hint: (.7, None)
+                    size: "400dp", "40dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    on_press: root.go_back_to_home_page_button()
+                    
+            BoxLayout:
+                size_hint: 1, None
+                size: "632dp", "180dp"
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: "10dp"
+                
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label: 
+                        text: "Zone 5: MAXIMUM"
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Switch:
+                        id: zone5
+                        active: False
+                        on_active: root.on_switch_zone(5,self.active)
+                        
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "120dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Benefits: Increases maximum sprint race speed\nFeels like: Very exhausting for breathing and muscles\nRecommended for: Very fit persons with athletic training background"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(20)
+                        halign: 'left'
+                        padding: dp(10), dp(10)
+                        text_size: self.width, None
+                        canvas.before:
+                            Color:
+                                rgba: (240/255, 56/255, 67/255, .5)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size                   
+            BoxLayout:
+                size_hint: 1, None
+                size: "632dp", "180dp"
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: "10dp"
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label: 
+                        text: "Zone 4: HARD"
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Switch:
+                        id: zone4
+                        active: False
+                        on_active: root.on_switch_zone(4,self.active)
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "120dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Benefits: Increases maximum performance capacity\nFeels like: Muscular fatigue and heavy breathing\nRecommended for: Fit users and for short exercises"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(20)
+                        halign: 'left'
+                        padding: dp(10), dp(10)
+                        text_size: self.width, None
+                        canvas.before:
+                            Color:
+                                rgba: (251/255, 166/255, 24/255, .5)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "632dp", "180dp"
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: "10dp"
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label: 
+                        text: "Zone 3: MODERATE"
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Switch:
+                        id: zone3
+                        active: False
+                        on_active: root.on_switch_zone(3,self.active)
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "120dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Benefits: Improves aerobic fitness\nFeels like: Light muscular fatigue, easy breathing, moderate sweating\nRecommended for: Everybody for typical, moderately long exercises"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(20)
+                        halign: 'left'
+                        padding: dp(10), dp(10)
+                        text_size: self.width, None
+                        canvas.before:
+                            Color:
+                                rgba: (1/255, 174/255, 96/255, .5)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "632dp", "180dp"
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: "10dp"
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label: 
+                        text: "Zone 2: LIGHT"
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Switch:
+                        id: zone2
+                        active: False
+                        on_active: root.on_switch_zone(2,self.active)
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "140dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Benefits: Improves basic endurance and helps recovery\nFeels like: Comfortable, easy breathing, low muscle load, light sweating\nRecommended for: Everybody for longer and frequently repeated shorter exercises"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(20)
+                        halign: 'left'
+                        padding: dp(10), dp(10)
+                        text_size: self.width, None
+                        canvas.before:
+                            Color:
+                                rgba: (0/255, 166/255, 222/255, .5)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "632dp", "180dp"
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: "10dp"
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label: 
+                        text: "Zone 1: VERY LIGHT"
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Switch:
+                        id: zone1
+                        active: True
+                        on_active: root.on_switch_zone( 1,self.active)
+                BoxLayout:
+                    size_hint: 1, None
+                    size: "300dp", "140dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Benefits: Improves overall health and metabolism, helps recovery\nFeels like: Very easy for breathing and muscles\nRecommended for: Basic training for novice exercisers, weight management and active recovery"
+                        size_hint_y: None
+                        height: self.texture_size[1] + dp(20)
+                        halign: 'left'
+                        padding: dp(10), dp(10)
+                        text_size: self.width, None
+                        canvas.before:
+                            Color:
+                                rgba: (191/255, 191/255, 195/255, .5)
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+
+
+
+
+<VelocityPage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+
+    ScrollView:
+        BoxLayout:
+            spacing: 40
+            orientation: "vertical"
+            gravity: 'center'
+            
+            BoxLayout:
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: 50
+                size_hint: 1, None
+                size: "300dp", "130dp"
+                
+                BoxLayout:
+                    pos_hint: {"center_x": 0.5}
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    Label:
+                        text: "VELOCITY"
+                        size_hint: (1,1)
+
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Button:
+                        text: 'Go Back'
+                        background_color: app.btn_color
+                        background_normal: ''
+                        size_hint: (.7, None)
+                        size: "400dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: root.go_back_to_home_page_button()
+
+            BoxLayout:
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: 10
+                size_hint: 1, None
+                size: "300dp", "140dp"
+                
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Real-time Pedal Velocity :"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: str(root.real_time_Velocity) + " km/h"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Target Pedal Velocity :"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: str(root.target_velocity) + " km/h"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Average Pedal Velocity :"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: str((root.avg_velocity)//1)+" km/h"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                                
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Max Pedal Velocity :"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: str((root.max_velocity)//1)+" km/h"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+            BoxLayout:
+                size_hint: .9, None
+                size: "300dp", "230dp"
+                orientation: "vertical"
+                pos_hint: {"center_x": 0.5}
+                
+                Label:
+                    text: "Graphical Representation"
+                    size_hint: (1, None)
+                    size: "300dp", "30dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+                ScrollView:
+                    id: view
+                    do_scroll_x: True
+                    do_scroll_y: False
+                    orientation: "vertical"
+                    size_hint: 1, 0.5
+                    scroll_type: ["content"]
+
+                    BoxLayout:
+                        orientation: "vertical"
+                        size_hint: None, 1
+                        width: view.width*root.zoom
+
+                        BoxLayout:
+                            id: graph
+                            size_hint: 1, 1
+
+                BoxLayout:
+                    id: zoom
+                    size_hint: 1,0.2
+                    orientation: "horizontal"
+
+                    Button:
+                        text: "-"
+                        size_hint_x: None
+                        width: self.height
+                        on_release: root.update_zoom("-")
+                        background_color: app.btn_color
+                        background_normal: ''
+
+                    Label: 
+                        text: "x"
+                    
+                    Button: 
+                        text: "+"
+                        size_hint_x: None
+                        width: self.height
+                        on_release: root.update_zoom("+")
+                        background_color: app.btn_color
+                        background_normal: ''
+
+            BoxLayout:
+                size_hint: 1, None
+                size: "300dp", "200dp"
+                pos_hint: {"center_x": 0.5}
+
+
+
+
+
+<Heart_RatePage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+    ScrollView:
+        BoxLayout:
+            spacing: 40
+            orientation: "vertical"
+            BoxLayout:
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: 50
+                size_hint: 1, None
+                size: "300dp", "130dp"
+                BoxLayout:
+                    pos_hint: {"center_x": 0.5}
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    Label:
+                        text: "HEART RATE"
+                        size_hint: (1,1)
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Button:
+                        text: 'Go Back'
+                        backgound_color: app.btn_color
+                        backgound_normal: ''
+                        size_hint: (.7, None)
+                        size: "400dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        on_press: root.go_back_to_home_page_button()
+            BoxLayout:
+                pos_hint: {"center_x": 0.5}
+                orientation: "vertical"
+                spacing: 10
+                size_hint: 1, None
+                size: "300dp", "140dp"
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Real-time Heart Rate :"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: str(root.real_time_heart_rate) + " BPM"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Average Heart Rate :"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: str((root.avg_HR)//1)+" RPM"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                BoxLayout:
+                    size_hint: .9, None
+                    size: "300dp", "40dp"
+                    pos_hint: {"center_x": 0.5}
+                    Label:
+                        text: "Max Heart Rate :"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        text: str(root.max_heart_rate)+" RPM"
+                        size_hint: (.7, None)
+                        size: "300dp", "40dp"
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                        canvas.before:
+                            Color:
+                                rgba: app.input_color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+            BoxLayout:
+                size_hint: .9, None
+                size: "300dp", "230dp"
+                orientation: "vertical"
+                pos_hint: {"center_x": 0.5}
+                Label:
+                    text: "Graphical Representation"
+                    size_hint: (1, None)
+                    size: "300dp", "30dp"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                ScrollView:
+                    id: view
+                    do_scroll_x: True
+                    do_scroll_y: False
+                    orientation: "vertical"
+                    size_hint: 1, 0.5
+                    scroll_type: ["content"]
+                    BoxLayout:
+                        orientation: "vertical"
+                        size_hint: None, 1
+                        width: view.width*root.zoom
+                        BoxLayout:
+                            id: graph
+                            size_hint: 1, 1
+                BoxLayout:
+                    id: zoom
+                    size_hint: 1,0.2
+                    orientation: "horizontal"
+                    Button:
+                        text: "-"
+                        size_hint_x: None
+                        width: self.height
+                        on_release: root.update_zoom("-")
+                        backgound_color: app.btn_color
+                        backgound_normal: ''
+                    Label: 
+                        text: "x"
+                    Button: 
+                        text: "+"
+                        size_hint_x: None
+                        width: self.height
+                        on_release: root.update_zoom("+")
+                        backgound_color: app.btn_color
+                        backgound_normal: ''
+                BoxLayout:
+                    size_hint: 1, 0.1
+                    orientation: "vertical"
+            BoxLayout:
+                pos_hint: {"center_x": 0.5}
+                size_hint: 1, None
+                size: "300dp", "200dp"
+
+
+
+
+<ProfilePage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+    
+    ScrollView:
+        do_scroll_x: False
+        BoxLayout:
+            orientation: "vertical"
+            spacing: dp(10)
+            size_hint_y: None
+            height: self.minimum_height
+
+            Label:
+                size_hint_y: None
+                height: dp(100)  # Adjust label height
+                text: "PROFILE"
+            
+            BoxLayout:
+                orientation: "vertical"
+                spacing: dp(10)
+                size_hint_y: None
+                height: dp(400)  # Adjust total box height
+                
+                BoxLayout:
+                    Label:
+                        text: "First Name"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust label height
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    
+                    TextInput:
+                        id: firstname_input
+                        background_color: app.input_color
+                        foreground_color: app.white
+                        hint_text: "First Name"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust input height
+                        multiline: False
+                        halign: "center"
+                
+                BoxLayout:
+                    Label:
+                        text: "Last Name"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust label height
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    
+                    TextInput:
+                        id: lastname_input
+                        background_color: app.input_color
+                        foreground_color: app.white
+                        hint_text: "Last Name"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust input height
+                        multiline: False
+                        halign: "center"
+                
+                BoxLayout:
+                    Label:
+                        text: "Age"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust label height
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    
+                    TextInput:
+                        id: age_input
+                        background_color: app.input_color
+                        foreground_color: app.white
+                        hint_text: "Age"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust input height
+                        multiline: False
+                        halign: "center"
+                        input_filter: 'int'
+                
+                BoxLayout:
+                    Label:
+                        text: "Enter your weight"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust label height
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    
+                    TextInput:
+                        id: weight_input
+                        background_color: app.input_color
+                        foreground_color: app.white
+                        hint_text: "Weight(kg)"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust input height
+                        multiline: False
+                        halign: "center"
+                        input_filter: 'float'
+                
+                BoxLayout:
+                    Label:
+                        text: "Gender"
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust label height
+                        canvas.before:
+                            Color:
+                                rgba: app.Label_Background_Color
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    
+                    Spinner:
+                        id: gender_input
+                        values: ['Select Gender', 'Male', 'Female']
+                        text: 'Select Gender'
+                        background_color: app.input_color
+                        background_normal: ''
+                        background_down: ''
+                        border_color: app.input_color
+                        foreground_color: app.white
+                        option_cls: 'MySpinnerOption'
+                        size_hint: (.7, None)
+                        height: dp(40)  # Adjust input height
+                        multiline: False
+                        halign: "center"
+
+
+            
+            BoxLayout:
+                size_hint_y: None
+                height: dp(60)  # Adjust total box height
+                
+                Button:
+                    text: 'Save Profile'
+                    background_color: app.btn_color
+                    background_normal: ''
+                    size_hint: (1, None)
+                    height: dp(40)  # Adjust button height
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    on_press: root.save_profile_button()
+            BoxLayout:
+                size_hint_y: None
+                height: dp(60)  # Adjust total box height
+                
+                Button:
+                    text: 'Go Back'
+                    background_color: app.btn_color
+                    background_normal: ''
+                    size_hint: (1, None)
+                    height: dp(40)  # Adjust button height
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+                    on_press: root.go_back_to_previous_page()
+
+<MySpinnerOption@SpinnerOption>:
+    background_normal: ''  # Background image of the option
+    background_down: ''    # Background image of the option when pressed
+    background_color: app.input_color  # Background color of the option
+    border_color: app.input_color   # Border color of the option
+    foreground_color: app.white  # Text color of the option
+    padding: dp(10), dp(5)  # Padding of the option
+
+
+
+
+<SignUpPage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+    
+    username_input: username_input
+    password_input: password_input
+    
+    orientation: "vertical"
+    
+    Label:
+        size_hint_y: None
+        height: dp(120)  # Adjust label height
+        text: "SIGNUP PAGE"
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(160)  # Adjust total box height
+        
+        orientation: "vertical"
+        
+        TextInput:
+            id: username_input
+            background_color: app.input_color
+            foreground_color: app.white
+            hint_text: "Username"
+            size_hint: (.7, None)
+            height: dp(50)  # Adjust input height
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+            on_text_validate: root.on_text_validate(self)
+            halign: "center"
+        
+        TextInput:
+            id: password_input
+            background_color: app.input_color
+            foreground_color: app.white
+            hint_text: "Your Password"
+            size_hint: (.7, None)
+            height: dp(50)  # Adjust input height
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+            on_text_validate: root.on_text_validate(self)
+            halign: "center"
+            password: True
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(80)  # Adjust total box height
+        
+        Button:
+            text: 'Next'
+            background_color: app.btn_color
+            background_normal: ''
+            size_hint: (.7, None)
+            height: dp(40)  # Adjust button height
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_press: root.save_userpass_button()
+    BoxLayout:
+        size_hint_y: None
+        height: dp(80)  # Adjust total box height
+        
+        Button:
+            text: 'Go Back'
+            background_color: app.btn_color
+            background_normal: ''
+            size_hint: (.7, None)
+            height: dp(40)  # Adjust button height
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            on_press: root.go_back_to_login_or_singup_page()
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(240)  # Adjust bottom box height
+
+
+
+
+<LogIn_SignUpPage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+    
+    orientation: "vertical"
+    padding: '20dp'
+    spacing: "20dp"
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(100)  # Adjust the height to fit the top space
+        spacing: "20dp"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size_hint_y: None
+        height: dp(150)  # Adjust the height for buttons
+        spacing: "20dp"
+        
+        Button:
+            text: 'Login'
+            background_color: app.btn_color
+            background_normal: ''
+            size_hint: (.7, None)
+            height: dp(60)  # Adjust the button height
+            pos_hint: {'center_x': 0.5}
+            on_press: root.login_button()
+        
+        Button:
+            text: 'Signup'
+            background_color: app.btn_color
+            background_normal: ''
+            size_hint: (.7, None)
+            height: dp(60)  # Adjust the button height
+            pos_hint: {'center_x': 0.5}
+            on_press: root.signup_button()
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(100)  # Adjust the height to fit the bottom space
+        Label:
+
+
+
+
+<LogInPage>:
+    canvas.before:
+        Rectangle:
+            source: app.background_path
+            size: root.width, root.height
+            pos: self.pos
+    
+    username_input: username_input
+    password_input: password_input
+    spacing: "20dp"
+    orientation: "vertical"
+    
+    Label:
+        size_hint_y: None
+        height: dp(120)  # Adjust label height
+        text: "LOGIN PAGE"
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(160)  # Adjust total box height
+        spacing: "20dp"
+        orientation: "vertical"
+        
+        TextInput:
+            id: username_input
+            background_color: app.input_color
+            foreground_color: app.white
+            hint_text: "Username"
+            size_hint: (.7, None)
+            height: dp(50)  # Adjust input height
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+            on_text_validate: root.on_text_validate(self)
+            halign: "center"
+        
+        TextInput:
+            id: password_input
+            background_color: app.input_color
+            foreground_color: app.white
+            hint_text: "Your Password"
+            size_hint: (.7, None)
+            height: dp(50)  # Adjust input height
+            pos_hint: {'center_x': 0.5}
+            multiline: False
+            on_text_validate: root.on_text_validate(self)
+            halign: "center"
+            password: True
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(100)  # Adjust total box height
+        
+        orientation: "vertical"
+        
+        Button:
+            text: 'Login'
+            background_color: app.btn_color
+            background_normal: ''
+            size_hint: (.7, None)
+            height: dp(50)  # Adjust button height
+            pos_hint: {'center_x': 0.5}
+            on_press: root.go_to_home_page_button()
+        
+        Label:
+            text: root.something_wrong
+            color: "red"
+    
+    BoxLayout:
+        size_hint_y: None
+        height: dp(240)  # Adjust bottom box height
